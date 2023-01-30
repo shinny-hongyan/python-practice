@@ -6,25 +6,11 @@ __date__ = '2023/1/30'
 体彩大乐透双色球彩票中奖规则
 """
 
-winning_red_balls = [1, 5, 11, 15, 33]
-winning_blue_balls = [1, 10]
 
+# 1  5 11 15 33
+# winning_blue_balls = [1, 10]
 
-def check_prize(red_balls, blue_balls):
-    red_balls = sorted(red_balls)  # 对红球号码进行排序
-    red_match = 0  # 红球匹配个数
-    blue_match = 0  # 蓝球匹配个数
-
-    # 计算红球匹配个数
-    for ball in red_balls:
-        if ball in winning_red_balls:
-            red_match += 1
-
-    # 判断蓝球是否匹配
-    for ball in blue_balls:
-        if ball in winning_blue_balls:
-            blue_match += 1
-
+def level(red_match, blue_match):
     # 根据匹配个数判断中奖级别
     if red_match == 5 and blue_match == 2:
         return "一等奖"
@@ -49,8 +35,37 @@ def check_prize(red_balls, blue_balls):
         return "未中奖"
 
 
-print(check_prize([1, 5, 11, 15, 33], [5, 7]))
-print(check_prize([6, 21, 27, 31, 33], [4, 6]))
-print(check_prize([4, 14, 24, 27, 34], [6, 12]))
-print(check_prize([2, 10, 13, 29, 32], [6, 12]))
-print(check_prize([1, 4, 14, 24, 31], [8, 11]))
+def check_prize(winning_red_balls, winning_blue_balls, red_balls, blue_balls):
+    red_balls = sorted(red_balls)  # 对红球号码进行排序
+    red_match = 0  # 红球匹配个数
+    blue_match = 0  # 蓝球匹配个数
+
+    red_balls_result = ""
+    blue_balls_result = ""
+
+    # 计算红球匹配个数
+    for ball in red_balls:
+        if ball in winning_red_balls:
+            red_match += 1
+            red_balls_result += f"{ball} [√]  "
+        else:
+            red_balls_result += f"{ball} [×]  "
+
+    # 判断蓝球是否匹配
+    for ball in blue_balls:
+        if ball in winning_blue_balls:
+            blue_match += 1
+            blue_balls_result += f"{ball} [√]  "
+        else:
+            blue_balls_result += f"{ball} [×]  "
+
+    print(f"{red_balls_result} | {blue_balls_result}    {level(red_match, blue_match)}")
+
+
+if __name__ == '__main__':
+    winning_red_balls = [int(x) for x in input("请输入开奖红球号码，用空格隔开：").split()]
+    winning_blue_balls = [int(x) for x in input("请输入开奖蓝球号码，用空格隔开：").split()]
+
+    red_balls = [int(x) for x in input("请输入红球号码，用空格隔开：").split()]
+    blue_balls = [int(x) for x in input("请输入蓝球号码，用空格隔开：").split()]
+    check_prize(winning_red_balls, winning_blue_balls, red_balls, blue_balls)
