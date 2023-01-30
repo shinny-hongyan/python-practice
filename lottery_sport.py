@@ -49,7 +49,7 @@ def check_prize(red_balls, blue_balls):
         return "未中奖"
 
 
-print(check_prize([5, 6, 19, 24, 31], [5, 7]))
+print(check_prize([1, 5, 11, 15, 33], [5, 7]))
 print(check_prize([6, 21, 27, 31, 33], [4, 6]))
 print(check_prize([4, 14, 24, 27, 34], [6, 12]))
 print(check_prize([2, 10, 13, 29, 32], [6, 12]))
