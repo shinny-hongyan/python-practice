@@ -6,10 +6,6 @@ __date__ = '2023/1/30'
 体彩大乐透双色球彩票中奖规则
 """
 
-
-# 1  5 11 15 33
-# winning_blue_balls = [1, 10]
-
 def level(red_match, blue_match):
     # 根据匹配个数判断中奖级别
     if red_match == 5 and blue_match == 2:
@@ -63,9 +59,14 @@ def check_prize(winning_red_balls, winning_blue_balls, red_balls, blue_balls):
 
 
 if __name__ == '__main__':
+    print(f"请参考 http://kaijiang.500.com/shtml/dlt/23009.shtml?0_ala_baidu 中的开奖号码, 进行输入对比")
     winning_red_balls = [int(x) for x in input("请输入开奖红球号码，用空格隔开：").split()]
     winning_blue_balls = [int(x) for x in input("请输入开奖蓝球号码，用空格隔开：").split()]
 
-    red_balls = [int(x) for x in input("请输入红球号码，用空格隔开：").split()]
-    blue_balls = [int(x) for x in input("请输入蓝球号码，用空格隔开：").split()]
-    check_prize(winning_red_balls, winning_blue_balls, red_balls, blue_balls)
+    while True:
+        print(f"")
+        red_balls = [int(x) for x in input("请输入红球号码，用空格隔开(直接回车退出)：").split()]
+        if red_balls is None or len(red_balls) != 5:
+            break
+        blue_balls = [int(x) for x in input("请输入蓝球号码，用空格隔开：").split()]
+        check_prize(winning_red_balls, winning_blue_balls, red_balls, blue_balls)
